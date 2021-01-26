@@ -4,8 +4,9 @@ class Scene1 extends Phaser.Scene {
   }
 
   preload(){
+
     this.load.image("background", "assets/images/background.png");
-    //
+
     this.load.spritesheet("ship", "assets/spritesheets/ship.png",{
       frameWidth: 16,
       frameHeight: 16
@@ -40,6 +41,7 @@ class Scene1 extends Phaser.Scene {
   }
 
   create() {
+
     this.add.text(20, 20, "Loading game...");
     this.scene.start("playGame");
 

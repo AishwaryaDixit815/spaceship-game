@@ -6,12 +6,12 @@ class Scene2 extends Phaser.Scene {
 
   create() {
 
-    this.background = this.add.tileSprite(0, 0, config.width, config.height, "background").setScale(3);
+    this.background = this.add.tileSprite(0, 0, config.width, config.height, "background").setScale(6);
     this.background.setOrigin(0, 0);
 
-    this.ship1 = this.add.sprite(config.width / 2 - 50, config.height / 2, "ship");
-    this.ship2 = this.add.sprite(config.width / 2, config.height / 2, "ship2");
-    this.ship3 = this.add.sprite(config.width / 2 + 50, config.height / 2, "ship3");
+    this.ship1 = this.add.sprite(config.width / 2 - 50, config.height / 2, "ship").setScale(2);
+    this.ship2 = this.add.sprite(config.width / 2, config.height / 2, "ship2").setScale(2);
+    this.ship3 = this.add.sprite(config.width / 2 + 50, config.height / 2, "ship3").setScale(2);
 
     // 3.1 add the ships to a group with physics
     this.enemies = this.physics.add.group();
@@ -43,7 +43,7 @@ class Scene2 extends Phaser.Scene {
 
 
     for (var i = 0; i < gameSettings.maxPowerups; i++) {
-      var powerUp = this.physics.add.sprite(16, 16, "power-up");
+      var powerUp = this.physics.add.sprite(16, 16, "power-up").setScale(2);
       this.powerUps.add(powerUp);
       powerUp.setRandomPosition(0, 0, game.config.width, game.config.height);
 
@@ -59,7 +59,7 @@ class Scene2 extends Phaser.Scene {
 
     }
 
-    this.player = this.physics.add.sprite(config.width / 2 - 8, config.height - 64, "player");
+    this.player = this.physics.add.sprite(config.width / 2 - 8, config.height - 64, "player").setScale(2);
     this.player.play("thrust");
     this.cursorKeys = this.input.keyboard.createCursorKeys();
     this.player.setCollideWorldBounds(true);
@@ -104,7 +104,7 @@ class Scene2 extends Phaser.Scene {
     //var Score = String(this.score);
     this.scoreLabel1 = this.add.bitmapText(10, 5, "pixelFont", "SCORE " + scoreFormated , 16);
     //this.scoreLabel = this.add.text(384, 400, "SCORE " +  Score , {fontSize: '64px' , fontWeight: '900', textShadow:'2px 5px 5px red'});
-    this.gameOverLabel = this.add.text(384, 300, "GAME OVER", {fontSize: '64px', fontWeight: '900', textShadow:'2px 5px 5px red'});
+    this.gameOverLabel = this.add.text(760, 300, "GAME OVER", {fontSize: '128px', fontWeight: '900', textShadow:'2px 5px 5px red'});
     this.gameOverLabel.setOrigin(0.5);
     //this.scoreLabel.setOrigin(0.5)
     this.gameOverLabel.visible = false;
@@ -123,7 +123,7 @@ class Scene2 extends Phaser.Scene {
     player.y = config.height - 64;
 
     var Score = String(this.score);
-    this.scoreLabel = this.add.text(384, 400, "SCORE " +  Score , {fontSize: '64px' , fontWeight: '900', textShadow:'2px 5px 5px red'});
+    this.scoreLabel = this.add.text(760, 400, "SCORE " +  Score , {fontSize: '64px' , fontWeight: '900', textShadow:'2px 5px 5px red'});
     this.scoreLabel.setOrigin(0.5)
 
     this.gameOverLabel.visible = true;
@@ -161,6 +161,10 @@ class Scene2 extends Phaser.Scene {
 
 
   update() {
+
+    //game.scale.pageAlignHorizontally = true;
+    //game.scale.pageAlignVertically = true;
+    //game.scale.refresh();
 
     if (gameOver)
     {
